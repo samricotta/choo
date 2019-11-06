@@ -1,38 +1,50 @@
 require "../choo/choo/version"
+require 'terminfo'
+require "curses"
+include Curses
 
 module  Choo
   # module Choo
     # class Error < StandardError; end
     class Train
-      def self.choo
-        first_loop
+
+      def choo
+        @string = "\r"
+        @front = "🚂 "
+        @carriage = "🚃 "
+        move_right
       end
 
-      def self.first_loop
-        string = " "
-        front = "🚂"
-        carriage = " 🚃 "
-        all_c = " 🚃 🚃 🚃 🚃 🚃"
-        print string.insert(-1, front)
-          sleep(0.5)
+      def move_right
+        print add_character(@front)
         loop do
-          print string
-          string.insert(-1, carriage)
-          sleep(0.5)
-          string.insert(-1, carriage)
-          sleep(0.5)
+          screen_size = TermInfo.screen_size
+          if @string.length >= (screen_size[1] - 5)
+              @string = "\r"
+              print add_character(@front)
+          else
+            if @string.length < 10
+              print @string
+              add_character(@carriage)
+              pause
+            else
+              print @string
+              add_character(" ")
+              pause
+            end
+          end
         end
-        # all.slice!(0)
-        # p all
-        # end
       end
-      choo
+
+      def add_character(subject)
+        @string.insert(0, subject)
+      end
+
+      def pause
+        sleep(0.025)
+      end
+
     end
-  # end
+  Train.new.choo
 end
 
-
- # 1.upto(6) do |i|
- #            print front
- #            sleep(0.5)
- #            p
