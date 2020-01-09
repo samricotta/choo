@@ -47,14 +47,14 @@ class Train
   end
 
   def print_train
-    space_count = Terminal.screen_width - @moves
+    space_count = Terminal.columns - @moves
 
     if space_count < 0
       print(train[space_count.abs..-1])
     else
       print(" " * space_count)
 
-      cut_off = Terminal.screen_width - (train_length + space_count)
+      cut_off = Terminal.columns - (train_length + space_count)
       cut_off = 0 if cut_off > -1
       end_of_train = -1 + cut_off
       print(train[0..end_of_train])
@@ -63,6 +63,6 @@ class Train
 
   def move_left
     @moves += 1
-    @moves = 0 if @moves > Terminal.screen_width + train_length
+    @moves = 0 if @moves > Terminal.columns + train_length
   end
 end

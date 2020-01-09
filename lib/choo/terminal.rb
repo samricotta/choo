@@ -1,12 +1,12 @@
 module Terminal
   module_function
 
-  def screen_size
-    TermInfo.screen_size
+  def columns
+    ENV['COLUMNS']&.to_i || IO.console.winsize[1] || 80
   end
 
-  def screen_width
-    screen_size[1]
+  def rows
+    ENV['LINES']&.to_i || IO.console.winsize[0] || 24
   end
 
   def return_to_beginning_of_line
