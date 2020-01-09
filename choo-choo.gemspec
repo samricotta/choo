@@ -1,23 +1,18 @@
 lib = File.expand_path("lib", __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "choo/choo/version"
+require "choo/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "choo-choo"
-  spec.version       = Choo::Choo::VERSION
+  spec.name          = "choo"
+  spec.version       = Choo::VERSION
   spec.authors       = ["Sam Ricotta"]
   spec.email         = ["samanthalricotta@gmail.com"]
 
-  spec.summary       = %q{Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{Write a longer description or delete this line.}
-  spec.homepage      = "https://www.example.com"
+  spec.summary       = %q{An animated train in your terminal.}
+  spec.homepage      = "https://github.com/samricotta/choo"
   spec.license       = "MIT"
 
-  spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
-
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://www.example.com"
-  spec.metadata["changelog_uri"] = "https://www.example.com"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.

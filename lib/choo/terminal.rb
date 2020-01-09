@@ -24,4 +24,12 @@ module Terminal
   def show_cursor
     print "\e[?25h"
   end
+
+  def save_position_of_cursor
+    print "\e[s"
+  end
+
+  def restore_position_of_cursor
+    print "\e[u"
+  end
 end

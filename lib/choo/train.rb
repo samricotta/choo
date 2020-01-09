@@ -11,6 +11,24 @@ class Train
     @moves = 0
   end
 
+  def show
+    hide if @thread
+    Terminal.save_position_of_cursor
+    @thread = Thread.new do
+      choo
+    end
+  end
+
+  def hide
+    Terminal.restore_position_of_cursor
+    @thread.kill
+  end
+
+  private
+
+  attr_reader :train,
+              :train_length
+
   def choo
     Terminal.hide_cursor
     loop do
@@ -24,17 +42,12 @@ class Train
     Terminal.show_cursor
   end
 
-  private
-
-  attr_reader :train,
-              :train_length
-
   def pause
     sleep(ANIMATION_RATE)
   end
 
   def print_train
-    space_count = Terminal.screen_width - @moves -1
+    space_count = Terminal.screen_width - @moves
 
     if space_count < 0
       print(train[space_count.abs..-1])

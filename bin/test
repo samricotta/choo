@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require 'choo'
+
+train = Train.new(10)
+train.show
+sleep(8)
+train.hide

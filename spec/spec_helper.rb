@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "choo/choo"
+require "choo"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
